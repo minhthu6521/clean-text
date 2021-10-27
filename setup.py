@@ -12,7 +12,7 @@ class post_install():
 
 
 setuptools.setup(
-    name="cleantext-minhthu6521",
+    name="cleantext-tn",
     version="0.0.1",
     author="Thu Nguyen",
     author_email="minhthu6521@gmail.com",
