@@ -1,6 +1,7 @@
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
 import re
 import sys
 import warnings
@@ -39,6 +40,7 @@ def lemmatization_text(text):
     result = []
     for word in words:
         r = lemmatizer.lemmatize(word)
+        r = wordnet.morphy(r)
         result.append(r)
     return " ".join(result)
 

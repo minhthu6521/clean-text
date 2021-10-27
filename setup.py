@@ -1,11 +1,14 @@
 import setuptools
+from setuptools.command.install import install
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 
-class post_install():
+class PostInstallCommand(install):
+    """Post-installation for installation mode."""
     def run(self):
+        install.run(self)
         import nltk
         nltk.download('stopwords')
         nltk.download('wordnet')
@@ -13,7 +16,7 @@ class post_install():
 
 setuptools.setup(
     name="cleantext-tn",
-    version="0.0.1",
+    version="0.0.4",
     author="Thu Nguyen",
     author_email="minhthu6521@gmail.com",
     description="Clean text package",
@@ -30,6 +33,9 @@ setuptools.setup(
     ],
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
+    install_requires=[
+          "nltk==3.6.5",
+      ],
     python_requires=">=3.6",
-    cmdclass={'install_data': post_install},
+    cmdclass={'install': PostInstallCommand},
 )
